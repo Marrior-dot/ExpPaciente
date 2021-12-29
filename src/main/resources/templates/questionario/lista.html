@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head><meta charset="UTF-8" /></head>
+<body>
+		
+
+	  <div class="container-fluid" layout:fragment="corpo">
+	  	<div class="row">
+	  	
+	  		    <div th:replace="fragments/barralateralesquerda :: barralateralesquerda">
+					<div>conteudo principal das páginas</div>
+				</div>		
+		</div>		
+		
+		<div class="row">
+			
+			<div class="col-2">		
+					
+																	
+			</div>		
+			
+			
+			<div class="col-8">
+				
+				<nav aria-label="breadcrumb" class="bg-light mt-2 mb-2 me-0 ms-0 p-2 pb-1">
+				  <ol class="breadcrumb">
+				    <li class="breadcrumb-item active" aria-current="page"><i class="fa fa-map-marker me-1" aria-hidden="true"></i>Lista de questionários</li>
+				  </ol>
+				</nav>
+									
+			    <div th:replace="fragments/alert"></div>
+			    
+			    	<div class="row">
+			    		<div class="col">
+
+						</div>	
+					</div>		
+					
+					
+<!--  
+				<div class="card mb-3">
+				  <div class="card-body">
+					
+						<form th:action="@{/questionarios/filtrar}" method="GET">
+		
+								<div class="row mb-3">
+								  <div class="col">
+									<label for="input_tipo" class="form-label">Tipo</label>
+									<select name="id_tipo" id="input_tipo" class="form-select">
+									  <option value=""></option>
+									  <option th:each = "t : ${tipos}" th:value = "${t.id}" th:text = "${t.descricao}"  th:selected="${t.id == id_tipo}">Descricao do tipo</option>
+									</select>									
+								  </div>								
+								  <div class="col">
+									<label for="input_descricao" class="form-label">Descrição</label>
+									<input type="text" class="form-control" name="descricao" id="input_descricao" th:value="${descricao}"/>
+								  </div>								  									  
+			
+								</div>
+								<div class="row">
+								  <div class="col">
+									<button type="submit" class="btn btn-primary d-block"> <i class="fa fa-search me-2" aria-hidden="true"></i> Filtrar</button>
+								  </div>
+								</div>
+						</form>
+								
+				  </div>	
+				</div>			
+-->
+
+
+				
+				<div class="card d-flex">
+				
+					  <div class="card-header">
+					     <h5> --- </h5>
+					  </div>				
+					<div class="card-body row align-center">
+						<h3>Lista de questionários<a th:href="@{/questionarios/cadastrar}"><i class="fa fa-plus-square fa-1x ms-3" aria-hidden="true"></i></a></h3>					
+						<div class="col-12 d-block">				
+							
+							<table class="table table-striped">
+							  <thead>
+								<tr>
+								  <th scope="col">Id</th>
+								  <th scope="col">Descrição</th>
+								  <th scope="col">publicado</th>
+								  <th scope="col">Perguntas</th>									  
+								  <th scope="col">Editar</th>
+								  <th scope="col">Excluir</th>
+								</tr>
+							  </thead>
+							  <tbody>
+								<tr th:each = "q : ${questionarios}">
+								  <th th:text = "${q.id}" scope="row">1</th>
+								  <td th:text = "${q.descricao}"> Descrição</td>								  						  
+								  <td> <i class="fa fa-check" aria-hidden="true" th:if="${q.publicado == true}"></i> </td>	
+								  <td>								  
+									<a th:href="@{/perguntas/filtrar/(id_questionario=${q.id})}" class="btn btn-info btn-sm">
+										<i class="fa fa-list" aria-hidden="true"></i>
+									</a>									  
+								  </td>								  							  
+								  <td>								  
+									<a th:href="@{/questionarios/editar/{id} (id=${q.id}) }" class="btn btn-info btn-sm">
+										<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+									</a>									  
+								  </td>
+								  <td>									
+									<a th:href="@{/questionarios/excluir/{id} (id=${q.id}) }" class="btn btn-info btn-sm">
+										<i class="fa fa-trash-o" aria-hidden="true"></i>
+									</a>		
+								  </td>
+								</tr>
+							  </tbody>							  
+							</table>							
+
+						</div>
+						
+						
+								<!-- Paginação -->
+								<nav aria-label="Page navigation example" th:if="${questionarios.totalPages > 1}">
+								  <ul class="pagination justify-content-center">
+								    <li class="page-item" th:classappend="${!questionarios.hasPrevious()? 'disabled' : ''}">
+								      <a class="page-link" th:href="@{/questionarios/filtrar/(size=${questionarios.size}, page=${paginaAtual-1}, descricao=${descricao})}"  tabindex="-1" aria-disabled="true">Anterior</a>
+								    </li>								  
+								    <li class="page-item" th:each="pageNumber : ${pageNumbers}" th:classappend="${pageNumber == paginaAtual? 'active' : ''}">
+								      <a th:href="@{/questionarios/filtrar/(size=${questionarios.size}, page=${pageNumber}, descricao=${descricao})}" th:text=${pageNumber} class="page-link"></a>
+								      
+								    </li>
+								    <li class="page-item" th:classappend="${!questionarios.hasNext()? 'disabled' : ''}">
+								      <a class="page-link" th:href="@{/questionarios/filtrar/(size=${questionarios.size}, page=${paginaAtual+1}, descricao=${descricao})}" >Próximo</a>
+								    </li>								    
+								  </ul>
+								</nav>		
+													
+					</div>
+				</div>	
+			</div>
+
+
+			<div class="col-2">											
+			</div>	
+				
+		</div>
+	  </div>
+	  
+	  <div th:replace="fragments/modal :: modal"></div>	
+
+  </body>
+</html>

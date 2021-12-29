@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head><meta charset="UTF-8" /></head>
+<body>
+		
+
+	  <div class="container-fluid" layout:fragment="corpo">
+	  	<div class="row">  	
+	  		    <div th:replace="fragments/barralateralesquerda :: barralateralesquerda">
+					<div>conteudo principal das páginas</div>
+				</div>		
+		</div>		
+				
+		<div class="row">
+			
+			<div class="col-2">																			
+			</div>	
+			
+			<div class="col-8">
+				
+				<nav aria-label="breadcrumb" class="bg-light mt-2 mb-2 me-0 ms-0 p-2 pb-1">
+				  <ol class="breadcrumb">
+				  	<li class="breadcrumb-item"><a href="/questionarios/listar">Lista de questionários</a></li>
+				  	<li class="breadcrumb-item"><a th:href="@{/perguntas/filtrar/(id_questionario=${questionarioDTO.id})}" >Lista de perguntas</a></li>			  					  	
+				    <li class="breadcrumb-item active" aria-current="page"><i class="fa fa-map-marker me-1" aria-hidden="true" ></i>Cadastro de pergunta</li>
+				  </ol>
+				</nav>					
+		
+				<div th:replace="fragments/alert"></div>			
+				
+			  	<!-- Vinculado ao questionário:-->			  														
+				<div class="card">
+					<div class="card-header">
+						<h5 class="card-title" th:text = "${questionarioDTO.titulo}">Card title</h5>	
+			  		</div>					
+				  <div class="card-body">
+				  		<h3>Cadastro de Pergunta</h3>
+						<form  th:action="${perguntaDTO.id == null} ? @{/perguntas/salvar} : @{/perguntas/editar}" th:object = "${perguntaDTO}" method="POST">
+							
+								<div class="row m-3">
+									<label for="input_url" class="form-label">Título</label>
+									<input type="text" class="form-control" th:field = "*{titulo}">
+									<span class="text-danger" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}">Título Error</span>																  								  	
+								</div>		
+
+								<div class="row m-3">
+										<label for="input_url" class="form-label">Descrição</label>
+										<textarea id="summernote" class="form-control" name="descricao" th:field = "*{descricao}"></textarea>		
+										<span class="text-danger" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}">Descrição Error</span>									
+							  	</div>																			  							
+
+								<div class="row m-3">
+										<label for="input_url" class="form-label">Peso</label>
+										<input type="number" min="0" max="1000"  class="form-control" th:field = "*{peso}">	
+										<span class="text-danger" th:if="${#fields.hasErrors('peso')}" th:errors="*{peso}">Peso Error</span>									
+							  	</div>								  	
+															  	
+								<div class="row m-3">							  	
+									<label for="tiporespostas" class="form-label">Tipo de resposta</label>
+									<select id="tiporespostas" class="form-select" th:field = "*{id_tiporesposta}">									  
+									  <option th:each = "tr : ${tiporespostas}" th:value = "${tr.id}" th:text = "${tr.descricao}">Tipo de resposta</option>
+									</select>
+									<span class="text-danger" th:if="${#fields.hasErrors('peso')}" th:errors="*{peso}">Peso Error</span>
+							  	</div>
+							  	 
+							  	<input type="hidden" name="id" id="id" th:field = "*{id}"/>		
+								<input type="hidden" th:value="${questionarioDTO.id}" name="id_questionario" />				
+																
+								
+								<div class="row pt-3">
+								  <div class="col">						  							  	
+									<button type="submit" class="btn btn-primary d-block" th:text = "${perguntaDTO.id == null} ? 'Salvar' : 'Atualizar'"> <i class="fa fa-floppy-o me-2" aria-hidden="true"></i> Salvar </button>
+								  </div>
+								</div>					
+						</form>
+						
+				  </div>	
+				</div>		
+												
+				
+
+			</div>
+				
+
+			<div class="col-2">							
+			</div>
+								
+		</div>
+	  </div>	
+
+  </body>
+</html>

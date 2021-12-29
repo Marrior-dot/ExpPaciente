@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body>
+	
+	<footer class="bg-dark" th:fragment="rodape">
+
+	  	<!-- Optional JavaScript; -->
+	
+		
+		
+		<script src="/js/jquery.min.js" type="text/javascript"></script>
+		<script src="/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+		<script src="/fontawesome/js/fontawesome.min.js" type="text/javascript"></script>
+		<script src="/js/jquery.treetable.js" type="text/javascript"></script>
+		<script src="/summernote/summernote-lite.js" type="text/javascript"></script>	
+		<script src="https://unpkg.com/pdfobject@2.2.6/pdfobject.min.js"></script>
+		
+		<script src="/js/script.js" type="text/javascript"></script>
+		
+		<script>
+		
+		var clickHandler = function (e){
+		
+			e.preventDefault();
+		
+			var pdfURL = this.getAttribute("href");
+		
+			var options = {
+				pdfOpenParams: {
+					navpanes: 0,
+					toolbar: 0,
+					statusbar: 0,
+					view: "FitV"
+				}
+			};
+		
+			var myPDF = PDFObject.embed(pdfURL, "#pdf", options);
+		
+			var el = document.querySelector("#results");
+			el.setAttribute("class", (myPDF) ? "success" : "fail");
+			el.innerHTML = (myPDF) ? "PDFObject successfully embedded '" + pdfURL + "'!" : "Uh-oh, the embed didn't work.";
+		
+		};
+		
+		var a = document.querySelectorAll(".embed-link");
+		
+		for(var i=0; i < a.length; i++){
+			a[i].addEventListener("click", clickHandler);
+		}
+		
+		
+		</script>
+</footer>
+		
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Bootstrap CSS -->       
+	<link rel="stylesheet"  href="/bootstrap/css/bootstrap.min.css"  />
+	<link rel="stylesheet"  href="/css/jquery.treetable.css"  />
+	<link rel="stylesheet"  href="/css/jquery.treetable.theme.default.css"  />
+	<link type="text/css" href="/webjars/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+	<link rel="stylesheet"  href="/summernote/summernote-lite.css"/>
+	<link rel="stylesheet"  href="/css/style.css"  />
+	<!-- Font -->   
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap" rel="stylesheet">	
+	
+    <title>Experiência do paciente</title>
+  </head>
+  
+<body>
+
+<!-- 
+	<header th:replace="fragments/header :: cabecalho">
+		<div>header</div>
+	</header>
+-->
+
+		
+	<div>	
+		<div class="col corpo" layout:fragment="corpo">
+			<div>conteudo principal das páginas</div>
+		</div>
+	</div>
+
+	
+	<footer th:replace="fragments/footer :: rodape">
+		<div>footer</div>
+	</footer>
+
+</body>
+</html>

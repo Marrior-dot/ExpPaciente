@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head><meta charset="UTF-8" /></head>
+<body>
+		
+
+	  <div class="container-fluid" layout:fragment="corpo">
+		
+	  	<div class="row">  	
+	  		    <div th:replace="fragments/barralateralesquerda :: barralateralesquerda">
+					<div>conteudo principal das páginas</div>
+				</div>		
+		</div>		
+				
+		<div class="row">
+			
+			<div class="col-2">																			
+			</div>	
+																	
+	
+			
+			
+			<div class="col-8">
+	
+				<nav aria-label="breadcrumb" class="bg-light mt-2 mb-2 me-0 ms-0 p-2 pb-1">
+				  <ol class="breadcrumb">
+				    <li class="breadcrumb-item active" aria-current="page"><i class="fa fa-map-marker me-1" aria-hidden="true"></i>Lista de relatórios</li>
+				  </ol>
+				</nav>
+													
+			    <div th:replace="fragments/alert"></div>			    										
+
+				
+				<div class="card d-flex">
+		
+				  <div class="card-header">
+				     <h5> Respostas por mês - tabela</h5>
+				  </div>			
+					  				
+					<form  th:action="@{/relatorios/pdf/jr2/01}" method="GET">
+							
+								<div class="row m-3">
+									<label for="input_mes" class="form-label" >Mês</label>
+									<input type="text" name="mes" class="form-control" placeholder="mm/aaaa" required>															  								  	
+								</div>		
+								
+								<div class="row m-2">
+								  <div class="col">						  							  	
+									<button type="submit" class="btn btn-primary d-block"> <i class="fa fa-floppy-o me-2" aria-hidden="true"></i> Gerar PDF </button>
+								  </div>
+								</div>					
+					</form>									
+													
+					
+				</div>	
+				<!--
+				     <a th:href="@{/relatorios/pdf/jr1 (code='01', acao='v')}">Abrir</a>
+				  	 <hr>
+				     <a th:href="@{/relatorios/pdf/jr1 (code='01', acao='d')}">Download</a>
+				     <hr>	
+				-->     
+				          
+				     
+				     
+			</div>
+
+
+			<div class="col-2">											
+			</div>	
+				
+		</div>
+	  </div>
+	  
+	  <div th:replace="fragments/modal :: modal"></div>	
+
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head><meta charset="UTF-8" /></head>
+<body>
+		
+
+	  <div class="container-fluid" layout:fragment="corpo">
+		
+	  	<div class="row">  	
+	  		    <div th:replace="fragments/barralateralesquerda :: barralateralesquerda">
+					<div>conteudo principal das páginas</div>
+				</div>		
+		</div>		
+				
+		<div class="row">
+			
+			<div class="col-2">																			
+			</div>	
+					
+									
+			<div class="col-8">
+				<nav aria-label="breadcrumb" class="bg-light mt-2 mb-2 me-0 ms-0 p-2 pb-1">
+				  <ol class="breadcrumb">
+				  	<li class="breadcrumb-item"><a href="/tiporespostas/listar">Lista de tipos de respostas</a></li>
+				    <li class="breadcrumb-item active" aria-current="page"><i class="fa fa-map-marker me-1" aria-hidden="true"></i>Cadastro</li>
+				  </ol>
+				</nav>	
+						
+				<div th:replace="fragments/alert"></div>
+				
+
+				<div class="card">
+					<div class="card-header">
+						<h5> --- </h5>	
+			  		</div>						
+				  <div class="card-body">
+				  <h3>Cadastro de tipo de resposta</h3>
+						<form  th:action="${tiporespostaDTO.id == null} ? @{/tiporespostas/salvar} : @{/tiporespostas/editar}" th:object = "${tiporespostaDTO}" method="POST">
+							
+								<div class="row m-3">
+										<label for="input_url" class="form-label">Descrição</label>
+										<textarea id="summernote" class="form-control" name="descricao" th:field = "*{descricao}"></textarea>		
+										<span class="text-danger" th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}">Descrição Error</span>									
+							  	</div>																			  							
+								
+								<input type="hidden" name="id" id="id" th:field = "*{id}"/>		
+								
+								<div class="row pt-3">
+								  <div class="col">						  							  	
+									<button type="submit" class="btn btn-primary d-block" th:text = "${tiporespostaDTO.id == null} ? 'Salvar' : 'Atualizar'"> <i class="fa fa-floppy-o me-2" aria-hidden="true"></i> Salvar </button>
+								  </div>
+								</div>					
+						</form>
+						
+				  </div>	
+				</div>			
+				
+				
+			</div>
+				
+
+			<div class="col-2">							
+			</div>
+								
+		</div>
+	  </div>	
+
+  </body>
+</html>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
 <head><meta charset="UTF-8" /></head>
-<body>
+<body class = "linearBackground">
 		
 
-	  <div class="container-fluid" layout:fragment="corpo">
-
+	  <div class="container-fluid gridContainer" layout:fragment="corpo">
+		<div class="Goback"><!--<img src="/src/main/resources/static/imagens/move-to-next.png" alt="">--></div>
 		<div class="container d-flex justify-content-center align-items-center">
-		    <form class="card bg-success p-2 text-dark bg-opacity-50 m-5" th:action=" @{/respostas/salvar}" th:object = "${respostaDTO}" method="POST">
+		    <form class="card fundoBrancoPerguntas p-2 text-dark bg-opacity-50 m-5" th:action=" @{/respostas/salvar}" th:object = "${respostaDTO}" method="POST">
 		        <div class="p-3 d-flex align-items-center justify-content-center border-bottom">
 		            <div class="d-flex flex-row justify-content-between align-items-center mcq">
 		                <h5 th:text = "${pergunta.titulo}">Os cuidados que recebeu dos profissionais de saúde</h5>
@@ -39,8 +39,9 @@
 		        </div>		
 		        
 		    </form>
+			
 		</div>
-		
+		<div><!--<img src="../../static/imagens/move-to-next 2.png" alt="">--></div>
  	</div>		
 
  <div th:replace="fragments/modal :: modal"></div>	
